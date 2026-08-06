@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem
+     id="hms_root"
+     name="HMS"
+
+    />
+    <menuitem
+     id="hms_patient"
+     name="Patient"
+     parent="hms_root"
+     action="hms_patient_action"
+    />
+
+
+
+</odoo>
