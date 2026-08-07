@@ -19,15 +19,37 @@
             <form>
                 <sheet>
                     <h1>
+                        <header>
+                            <button name="status_action_undetermined"
+                                    type="object"
+                                    string="Undetermined"
+                                    invisible="status == 'undetermined'"/>
+
+                            <button name="status_action_fine"
+                                    type="object"
+                                    string="Fine"
+                                    invisible="status in ['fine','good']"/>
+
+                            <button name="status_action_good"
+                                    type="object"
+                                    string="Good"
+                                    invisible="status == 'good'"/>
+
+                            <button name="status_action_serious"
+                                    type="object"
+                                    string="Serious"
+                                    invisible="status == 'serious'"/>
+
+                        </header>
                         <field name="status" widget="statusbar"/>
                     </h1>
                     <group>
                         <group>
                             <field name="first_name"/>
                             <field name="last_name"/>
-                            <field name="age"/>
                             <field name="birth_date"/>
-                            <field name="department_capacity" readonly="1"/>
+                            <field name="age"/>
+                            <field name="email"/>
                             <field name="blood_type"/>
                         </group>
 

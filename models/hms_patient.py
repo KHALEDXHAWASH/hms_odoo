@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-
+from datetime import date
 
 class HmsPatient(models.Model):
     _name = 'hms.patient'
@@ -9,9 +9,10 @@ class HmsPatient(models.Model):
     _order = 'first_name'
     first_name = fields.Char(string="First Name", required=True)
     last_name = fields.Char(string="Last Name", required=True)
+    email= fields.Char(string="Email", required=True)
     address = fields.Text(string="Address")
     history = fields.Html(string="History")
-    age=fields.Integer(string="Age")
+    age=fields.Integer(string="Age",compute="_compute_age",store=True)
     cr_ratio=fields.Float(string="Cr Ratio")
     birth_date = fields.Date(string="Birth Date")
     pcr=fields.Boolean(string="PCR")
@@ -48,6 +49,20 @@ class HmsPatient(models.Model):
         store=True
     )
 
+    @api.depends("birth_date")
+    def _compute_age(self):
+        for record in self:
+            if record.birth_date:
+               record.age = date.today().year-record.birth_date.year
+            else:
+                record.age = 1
+
+
+    @api.constrains("email")
+    def _check_email(self):
+        for record in self:
+          if "@" not in record.email or "." not in record.email.split("@")[-1]:
+             raise ValidationError("Email address is invalid")
 
     @api.constrains("pcr", "cr_ratio")
     def _mandatory_cr_ratio(self):
