@@ -17,6 +17,7 @@ class HmsPatient(models.Model):
     birth_date = fields.Date(string="Birth Date")
     pcr=fields.Boolean(string="PCR")
     image=fields.Image(string="Image")
+    #related_patient_id=fields.Many2one("res.partner",string="Related Patient")
     blood_type = fields.Selection([
         ("a+", "A+"),
         ("a-", "A-"),
@@ -33,6 +34,7 @@ class HmsPatient(models.Model):
         ("good","Good"),
         ("serious","Serious")
     ],string="Status")
+
     department_id = fields.Many2one(
         "hms.department",
         string="Department"
@@ -57,13 +59,15 @@ class HmsPatient(models.Model):
             else:
                 record.age = 1
 
+    _unique_email = models.Constraint("UNIQUE (email)",
+                                      "please enter a unique email address")
 
     @api.constrains("email")
     def _check_email(self):
+
         for record in self:
           if "@" not in record.email or "." not in record.email.split("@")[-1]:
              raise ValidationError("Email address is invalid")
-
     @api.constrains("pcr", "cr_ratio")
     def _mandatory_cr_ratio(self):
         for record in self:
