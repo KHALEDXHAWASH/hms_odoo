@@ -13,6 +13,7 @@
         "reports/hms_report.xml",
         "views/hms_patient_view.xml",
         "views/hms_doctor_view.xml",
+        "data/sequence_doctor.xml",
         "views/hms_department_view.xml",
         "views/hms_partner_view.xml",
         "views/hms_menu_view.xml"

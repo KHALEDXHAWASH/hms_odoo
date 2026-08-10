@@ -6,6 +6,7 @@ class HmsDoctor(models.Model):
     first_name=fields.Char(string="First Name")
     last_name=fields.Char(string="Last Name")
     image=fields.Image(string="Image")
+    ref=fields.Char(string="Ref",readonly=True,default="New")
 
     department_id = fields.Many2one(
         "hms.department",
@@ -16,3 +17,9 @@ class HmsDoctor(models.Model):
         "hms.patient",
         string="Patients"
     )
+    @api.model
+    def create(self, vals):
+        res=super(HmsDoctor,self).create(vals)
+        if res.ref=="New":
+            res.ref=self.env["ir.sequence"].next_by_code('doctor_sequence')
+        return res
