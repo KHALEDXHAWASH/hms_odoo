@@ -127,3 +127,36 @@ class HmsPatient(models.Model):
             record.status = "serious"
             record._create_status_log("Serious")
 
+''''
+<div class="page">
+
+                        <h1>Patient Report</h1>
+
+                        <p>
+                            First Name:
+                            <span t-field="doc.first_name"/>
+                        </p>
+
+                        <p>
+                            Last Name:
+                            <span t-field="doc.last_name"/>
+                        </p>
+                                                <p>
+                            Age:
+                            <span t-field="doc.age"/>
+                        </p>
+                        <p>
+                            Email:
+                            <span t-field="doc.email"/>
+                        </p>
+                        <p>
+                            Department:
+                            <span t-field="doc.department_id"/>
+                        </p>
+                        <p>
+                            Doctors:
+                            <span t-field="doc.doctor_ids"/>
+                        </p> 
+
+                    </div>
+'''''

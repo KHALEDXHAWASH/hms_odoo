@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="hms_report_templete">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    
+
+                    <div style="text-align: right;">
+                        <h1 style="text-align: left">
+                            Patient Status Report
+                        </h1>
+                        <img t-if="doc.image"
+                             t-att-src="image_data_uri(doc.image)"
+                             style="width: 130px; height: 130px;"/>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+
+                            <td style="width: 50%; vertical-align: top;">
+
+                                <p>
+                                    <strong>Name:</strong>
+                                    <span t-field="doc.first_name"/>
+                                    <span t-field="doc.last_name"/>
+                                </p>
+
+                                <p>
+                                    <strong>Age:</strong>
+                                    <span t-field="doc.age"/>
+                                </p>
+
+                                <p>
+                                    <strong>Department:</strong>
+                                    <span t-field="doc.department_id"/>
+                                </p>
+
+                                <p>
+                                    <strong>Doctors:</strong>
+                                    <span t-field="doc.doctor_ids"/>
+                                </p>
+
+                            </td>
+
+                            <td style="width: 50%; vertical-align: top;">
+
+                                <p>
+                                    <strong>Birth Date:</strong>
+                                    <span t-field="doc.birth_date"/>
+                                </p>
+
+                                <p>
+                                    <strong>PCR:</strong>
+                                    <span t-field="doc.pcr"/>
+                                </p>
+
+                                <p>
+                                    <strong>Blood Type:</strong>
+                                    <span t-field="doc.blood_type"/>
+                                </p>
+
+                                <p>
+                                    <strong>Email:</strong>
+                                    <span t-field="doc.email"/>
+                                </p>
+
+                            </td>
+
+                        </tr>
+                    </table>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
