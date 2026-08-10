@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+
+        <record id="hms_user" model="res.groups">
+            <field name="name">HMS User</field>
+        </record>
+
+        <record id="hms_manager" model="res.groups">
+            <field name="name">HMS Manager</field>
+        </record>
+        
+        <record id="hms_patient_user_rule" model="ir.rule">
+            <field name="name">HMS Patient User Own Records</field>
+            <field name="model_id" ref="model_hms_patient"/>
+            <field name="groups" eval="[(4, ref('hms.hms_user'))]"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+        </record>
+
+        <record id="hms_patient_manager_rule" model="ir.rule">
+            <field name="name">HMS Patient Manager All Records</field>
+            <field name="model_id" ref="model_hms_patient"/>
+            <field name="groups" eval="[(4, ref('hms.hms_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+    </data>
+</odoo>
