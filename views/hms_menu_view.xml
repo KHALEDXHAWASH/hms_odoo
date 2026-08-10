@@ -17,13 +17,13 @@
             parent="hms_root"
             action="hms_department_action"
     />
-     <menuitem
+    <menuitem
             id="hms_doctor"
             name="Doctor"
             parent="hms_root"
             action="hms_doctor_action"
+            groups="hms.hms_manager"
     />
-
 
 
 </odoo>

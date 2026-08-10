@@ -68,7 +68,9 @@
                             <field name="doctor_ids"
                                    widget="many2many_tags"
                                    readonly="not department_id"
-                                   domain="[('department_id', '=', department_id)]"/>
+                                   domain="[('department_id', '=', department_id)]"
+                                   groups="hms.hms_manager"
+                            />
 
                             <field name="pcr"/>
 
@@ -80,7 +82,20 @@
                                    class="oe_avatar"/>
                         </group>
                     </group>
+
+                    <notebook>
+                        <page string="History">
+                            <field name="log_ids">
+                                <list>
+                                    <field name="created_by"/>
+                                    <field name="created_at"/>
+                                    <field name="history"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
+
             </form>
         </field>
     </record>
